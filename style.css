@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-image: url("images/shelf.jpg");
+    background-position: center;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    height: 3.5rem;
+    width: 100%;
+    background-color: #592110;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #945542;
+}
+
+.headline > h2 {
+    margin: 0;
+}
+
+.add-button{
+  background-color: #0a6bff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(0,44,97,.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inherit;
+  font-family: "Space Grotesk",-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  min-height: 56px;
+  min-width: 120px;
+  width: 10%;
+  padding: 16px 20px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.add-button:hover {
+  background-color: #065dd8;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .add-button {
+    padding: 16px 44px;
+    min-width: 150px;
+  }
+}
+
+.inputs {
+  width: 50%;
+}
+
+.bookshelf {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.formdiv {
+  display: flex;
+  flex-direction: column;
+}
