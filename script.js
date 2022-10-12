@@ -1,41 +1,69 @@
 let myLibrary = [];
 const addBook = document.querySelector(".add-button");
 
+
 addBook.addEventListener("click", function () {
-    const bookshelf = document.querySelector(".bookshelf");
-    const formdiv = document.createElement("div"); 
-    formdiv.className = "formdiv";
-    bookshelf.appendChild(formdiv);
+    const addform = document.querySelector(".add-form");
+    const addformdiv = document.createElement("div"); 
+    addformdiv.className = "formdiv";
+    addform.appendChild(addformdiv);
 
     const form = document.createElement("form"); 
-    formdiv.appendChild(form);
+    addformdiv.appendChild(form);
     
     let authorinput = form.appendChild(document.createElement("input"))
         authorinput.setAttribute("type", "text");
+        authorinput.setAttribute("required", "");
      let titleinput = form.appendChild(document.createElement('input'))
         titleinput.setAttribute("type", "text");
+        authorinput.setAttribute("required", "");
     let pagesinput= form.appendChild(document.createElement('input'))
         pagesinput.setAttribute("type", "number");
+        authorinput.setAttribute("required", "");
     let readstatusinput = form.appendChild(document.createElement('input'));
         readstatusinput.setAttribute("type", "checkbox");
-});
+        authorinput.setAttribute("required", "");
+    let submitinput = form.appendChild(document.createElement('input'));
+        submitinput.setAttribute("type", "submit");
 
-function Book() {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.readstatus = readstatus;
-}
-
-function addBookToLibrary() {
-    let authorvalue =  document.getElementById("author").value;
-    let titlevalue =  document.getElementById("title").value;
-    let pagesvalue =  document.getElementById("pages").value;
-    let readstatusvalue =  document.getElementById("readstatus").value;
+    submitinput.addEventListener("click", function () {
+        let authorvalue =  authorinput.value;
+        let titlevalue =  titleinput.value;
+        let pagesvalue =  pagesinput.value;
+        let readstatusvalue =  readstatusinput.value;
     
     const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
 
     myLibrary.push(newBook);
+
+    function addtoshelf() {
+        addform.removeChild(addformdiv);
+
+        const bookshelf = document.querySelector(".bookshelf");
+        const bookitem = document.createElement("div");
+        bookshelf.appendChild(bookitem);
+        bookitem.classList.add("bookitem");
+        
+        let booktitle = bookitem.appendChild("p");
+        let bookauthor = bookitem.appendChild("p");
+        let bookpages = bookitem.appendChild("p");
+        let bookreadstatus = bookitem.appendChild("p")
+
+        booktitle.textContent = Book.title;
+        bookauthor.textContent = Book.author;
+        bookpages.textContent = Book.pages;
+        bookreadstatus.textContent = Book.readstatus;
+    }
+
+    addtoshelf();
+    });
+});
+
+function Book(author, title, pages, readstatus) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.readstatus = readstatus;
 }
 
 function BookShelf() {
