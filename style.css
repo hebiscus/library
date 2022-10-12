@@ -1,13 +1,22 @@
 body {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-items: center;
     height: 100vh;
     width: 100vw;
     margin: 0;
     background-image: url("images/shelf.jpg");
     background-position: center;
+}
+
+.top-part {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 0.5rem;
 }
 
 .headline {
@@ -17,7 +26,7 @@ body {
     align-items: center;
     height: 3.5rem;
     width: 100%;
-    background-color: #592110;
+    background-color: #ffffff;
     font-size: 2rem;
     font-weight: bold;
     color: #945542;
@@ -28,7 +37,7 @@ body {
 }
 
 .add-button{
-  background-color: #0a6bff;
+  background-color: #000000;
   border-radius: 4px;
   border: 0;
   box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(0,44,97,.1) 0 3px 6px 0;
@@ -55,7 +64,7 @@ body {
 }
 
 .add-button:hover {
-  background-color: #065dd8;
+  background-color: #242527;
   transform: translateY(-2px);
 }
 
@@ -64,6 +73,12 @@ body {
     padding: 16px 44px;
     min-width: 150px;
   }
+}
+
+.add-form {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .inputs {
@@ -78,6 +93,27 @@ body {
 }
 
 .formdiv {
+  width: 25%;
+  height: 500px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 1px solid red;
+  
+}
+
+.formdiv > form {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+
+.bookitem {
+  height: 50px;
+  width: 50px;
 }
