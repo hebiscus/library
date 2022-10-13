@@ -11,13 +11,13 @@ addBook.addEventListener("click", function () {
     const form = document.createElement("form"); 
     addformdiv.appendChild(form);
     
-    let authorinput = form.appendChild(document.createElement("input"))
+    let authorinput = form.appendChild(document.createElement("input"));
         authorinput.setAttribute("type", "text");
         authorinput.setAttribute("required", "");
-     let titleinput = form.appendChild(document.createElement('input'))
+     let titleinput = form.appendChild(document.createElement('input'));
         titleinput.setAttribute("type", "text");
         authorinput.setAttribute("required", "");
-    let pagesinput= form.appendChild(document.createElement('input'))
+    let pagesinput= form.appendChild(document.createElement('input'));
         pagesinput.setAttribute("type", "number");
         authorinput.setAttribute("required", "");
     let readstatusinput = form.appendChild(document.createElement('input'));
@@ -44,15 +44,20 @@ addBook.addEventListener("click", function () {
         bookshelf.appendChild(bookitem);
         bookitem.classList.add("bookitem");
         
-        let booktitle = bookitem.appendChild("p");
-        let bookauthor = bookitem.appendChild("p");
-        let bookpages = bookitem.appendChild("p");
-        let bookreadstatus = bookitem.appendChild("p")
+        let bookauthor = bookitem.appendChild(document.createElement("p"));
+        let booktitle = bookitem.appendChild(document.createElement("p"));
+        let bookpages = bookitem.appendChild(document.createElement("p"));
+        let bookreadstatus = bookitem.appendChild(document.createElement("p"));
 
-        booktitle.textContent = Book.title;
-        bookauthor.textContent = Book.author;
-        bookpages.textContent = Book.pages;
-        bookreadstatus.textContent = Book.readstatus;
+        bookauthor.innerText  = myLibrary[0].author;
+        booktitle.innerText = myLibrary[0].title;
+        bookpages.innerText = myLibrary[0].pages;
+
+        if (myLibrary[0].readstatus == "on") {
+            bookreadstatus.innerText  = "read"
+        } else {
+            "not read";
+        }
     }
 
     addtoshelf();
