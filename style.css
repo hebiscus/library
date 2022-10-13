@@ -2,7 +2,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-items: center;
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -17,6 +16,11 @@ body {
   align-items: center;
   justify-items: center;
   gap: 0.5rem;
+}
+
+.bottom-part {
+  width: 100%;
+  flex: 1;
 }
 
 .headline {
@@ -77,8 +81,8 @@ body {
 
 .add-form {
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .inputs {
@@ -86,10 +90,21 @@ body {
 }
 
 .bookshelf {
-  width: 50%;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  border: 1px solid red;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.bookitem {
+  grid-column: 1 / 2;
+  background-color: #fff;
 }
 
 .formdiv {
@@ -111,9 +126,4 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-
-.bookitem {
-  height: 50px;
-  width: 50px;
 }
