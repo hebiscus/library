@@ -41,7 +41,7 @@ addBook.addEventListener("click", function () {
         let authorvalue =  authorinput.value;
         let titlevalue =  titleinput.value;
         let pagesvalue =  pagesinput.value;
-        let readstatusvalue =  readstatusinput.value;
+        let readstatusvalue =  readstatusinput.checked;
     
         const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
 
@@ -64,10 +64,10 @@ addBook.addEventListener("click", function () {
             booktitle.innerText = myLibrary[0].title;
             bookpages.innerText = myLibrary[0].pages;
 
-            if (myLibrary[0].readstatus == "on") {
-                bookreadstatus.innerText  = "read"
+            if (myLibrary[0].readstatus == true) {
+                bookreadstatus.innerText = "read"
             } else {
-                "not read";
+                bookreadstatus.innerText = "not read";
             }
         }
 
