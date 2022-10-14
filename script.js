@@ -7,7 +7,6 @@ function checkEmptyFields() {
     }
 }
 
-
 addBook.addEventListener("click", function () {
     const addform = document.querySelector(".add-form");
     const addformdiv = document.createElement("div"); 
@@ -25,7 +24,9 @@ addBook.addEventListener("click", function () {
         titleinput.setAttribute("required", "");
     let pagesinput= form.appendChild(document.createElement('input'));
         pagesinput.setAttribute("type", "number");
+        pagesinput.setAttribute("min", "0");
         pagesinput.setAttribute("required", "");
+        pagesinput.setAttribute("oninput", "validity.valid||(value='')");  
     let readstatusinput = form.appendChild(document.createElement('input'));
         readstatusinput.setAttribute("type", "checkbox");
         readstatusinput.setAttribute("required", "");
