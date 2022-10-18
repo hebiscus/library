@@ -1,3 +1,8 @@
+* {
+  font-family: 'Barlow', sans-serif;
+}
+
+
 body {
     display: flex;
     flex-direction: column;
@@ -10,23 +15,24 @@ body {
 }
 
 .top-part {
+  height: 9%;
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0px 13px 10px -15px #111; 
+  border-bottom: 5px solid #000000;
+  gap: 15px;
 }
-
 
 
 .headline {
     display: flex;
     flex-direction: column;
-    justify-items: center;
     align-items: center;
     height: 3.5rem;
-    width: 100%;
     background-color: #ffffff;
     font-size: 2rem;
     font-weight: bold;
@@ -46,8 +52,7 @@ body {
   color: #fff;
   cursor: pointer;
   display: inherit;
-  font-family: "Space Grotesk",-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 18px;
+  font-size: 1.9rem;
   font-weight: 700;
   line-height: 24px;
   margin: 0;
@@ -99,17 +104,18 @@ body {
   grid-column: 1;
   grid-row: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 1rem;
-  border: 1px solid red;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1.5rem;
   z-index: 2;
-  
+  padding: 3%;
 }
 
 .bookitem {
-  grid-column: 1 / 2;
   background-color: #fff;
+  border: 10px inset #A4A4A4;
+  border-radius: 9px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
 }
 
 .formdiv {
@@ -121,8 +127,10 @@ body {
   top: 0;
   bottom: 0;
   margin: auto;
-  border: 1px solid red;
-  
+  border: 10px inset #ffadad;
+  border-radius: 9px;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 1);
 }
 
 .formdiv > form {
