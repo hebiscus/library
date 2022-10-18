@@ -8,6 +8,8 @@ function checkEmptyFields() {
 }
 
 addBook.addEventListener("click", function () {
+    addBook.disabled = true;
+
     const addform = document.querySelector(".add-form");
     const addformdiv = document.createElement("div"); 
     addformdiv.className = "formdiv";
@@ -35,9 +37,13 @@ addBook.addEventListener("click", function () {
 
 
     submitinput.addEventListener("click", function () {
+        addBook.disabled = false;
+
         if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
             return;
         }
+
+        addbuttonclicked = "no";
 
         let authorvalue =  authorinput.value;
         let titlevalue =  titleinput.value;
