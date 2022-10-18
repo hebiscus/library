@@ -67,11 +67,11 @@ addBook.addEventListener("click", function () {
             let bookpages = bookitem.appendChild(document.createElement("p"));
             let bookreadstatus = bookitem.appendChild(document.createElement("p"));
 
-            bookauthor.innerText  = myLibrary[0].author;
-            booktitle.innerText = myLibrary[0].title;
-            bookpages.innerText = myLibrary[0].pages;
+            bookauthor.innerText  = myLibrary[myLibrary.length - 1].author;
+            booktitle.innerText = myLibrary[myLibrary.length - 1].title;
+            bookpages.innerText = myLibrary[myLibrary.length - 1].pages;
 
-            if (myLibrary[0].readstatus == true) {
+            if (myLibrary[myLibrary.length - 1].readstatus == true) {
                 bookreadstatus.innerText = "read"
             } else {
                 bookreadstatus.innerText = "not read";
@@ -89,20 +89,4 @@ function Book(author, title, pages, readstatus) {
     this.readstatus = readstatus;
 }
 
-// function BookShelf() {
-//     const bookshelf = document.getElementsByClassName("bookshelf");
-
-//     for (const book in myLibrary) {
-//        let bookposition = bookshelf.appendChild(document.createElement("div"));
-//        let booktitle = bookposition.appendChild("p");
-//        let bookauthor = bookposition.appendChild("p");
-//        let bookpages = bookposition.appendChild("p");
-//        let bookreadstatus = bookposition.appendChild("p")
-
-//        booktitle.textContent = Book.title;
-//        bookauthor.textContent = Book.author;
-//        bookpages.textContent = Book.pages;
-//        bookreadstatus.textContent = Book.readstatus;
-//     }
-// }
 
