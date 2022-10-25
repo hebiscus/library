@@ -83,13 +83,14 @@ addBook.addEventListener("click", function () {
 
         addtoshelf();
 
-        const bookitem = document.querySelector(".bookitem");
+        const bookshelf = document.querySelector(".bookshelf");
         let deletebookbuttons = document.querySelectorAll(".deletebutton");
         deletebookbuttons.forEach(function (i) {
             i.addEventListener("click", function () {
-                // bookshelf.removeChild(this.bookitem.dataset)
                 let bookitemspot = Number(this.dataset.position);
                 myLibrary.splice(bookitemspot, 1);
+
+                bookshelf.removeChild(bookshelf.children[bookitemspot]);
             })
         })
 
