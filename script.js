@@ -3,6 +3,8 @@ const addBook = document.querySelector(".add-button");
 
 addBook.addEventListener("click", function () {
     addBook.disabled = true;
+    let bookshelfdiv = document.querySelector(".bookshelf");
+    bookshelfdiv.style.zIndex = "1";
 
     const addform = document.querySelector(".add-form");
     const addformdiv = document.createElement("div"); 
@@ -32,6 +34,7 @@ addBook.addEventListener("click", function () {
 
     submitinput.addEventListener("click", function () {
         addBook.disabled = false;
+        bookshelfdiv.style.zIndex = "2";
 
         if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
             return;
