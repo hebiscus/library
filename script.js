@@ -8,6 +8,65 @@ function Book(author, title, pages, readstatus) {
     this.readstatus = readstatus;
 }
 
+addBook.addEventListener("click", function () {
+    addBook.disabled = true;
+    BringForm();
+})
+
+function BringForm() {
+    const formplace = document.querySelector(".add-form");
+    const addformdiv = document.createElement("div"); 
+    addformdiv.className = "formdiv";
+
+    formplace.appendChild(addformdiv);
+
+    const form = document.createElement("form"); 
+    addformdiv.appendChild(form);
+
+    let authorinput = form.appendChild(document.createElement("input"));
+        authorinput.setAttribute("type", "text");
+        authorinput.setAttribute("required", "");
+     let titleinput = form.appendChild(document.createElement('input'));
+        titleinput.setAttribute("type", "text");
+        titleinput.setAttribute("required", "");
+    let pagesinput= form.appendChild(document.createElement('input'));
+        pagesinput.setAttribute("type", "number");
+        pagesinput.setAttribute("min", "0");
+        pagesinput.setAttribute("required", "");
+        pagesinput.setAttribute("oninput", "validity.valid||(value='')");  
+    let readstatusinput = form.appendChild(document.createElement('input'));
+        readstatusinput.setAttribute("type", "checkbox");
+        readstatusinput.setAttribute("required", "");
+    let submitinput = form.appendChild(document.createElement('input'));
+        submitinput.setAttribute("type", "submit");
+        submitinput.addEventListener("click", function () {
+            addBook.disabled = false;
+        
+            if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
+                return;
+            }
+            
+            addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput)
+        })
+}
+
+function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) {
+    const bookshelfdiv = document.querySelector(".bookshelf");
+    
+    authorvalue =  authorinput.value;
+    titlevalue =  titleinput.value;
+    pagesvalue =  pagesinput.value;
+    readstatusvalue =  readstatusinput.checked;
+
+    const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
+    myLibrary.push(newBook);
+
+    const bookitem = document.createElement("div");
+    bookshelfdiv.appendChild(bookitem);
+    bookitem.classList.add("bookitem");
+
+}
+
 
 
 // addBook.addEventListener("click", function () {
@@ -49,24 +108,22 @@ function Book(author, title, pages, readstatus) {
 //             return;
 //         }
 
-//         addbuttonclicked = "no";
-
-//         let authorvalue =  authorinput.value;
-//         let titlevalue =  titleinput.value;
-//         let pagesvalue =  pagesinput.value;
-//         let readstatusvalue =  readstatusinput.checked;
+        // let authorvalue =  authorinput.value;
+        // let titlevalue =  titleinput.value;
+        // let pagesvalue =  pagesinput.value;
+        // let readstatusvalue =  readstatusinput.checked;
     
-//         const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
+        // const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
 
-//         myLibrary.push(newBook);
+        // myLibrary.push(newBook);
 
 //         function addtoshelf() {
 //             addform.removeChild(addformdiv);
 
 //             const bookshelf = document.querySelector(".bookshelf");
-//             const bookitem = document.createElement("div");
-//             bookshelf.appendChild(bookitem);
-//             bookitem.classList.add("bookitem");
+            // const bookitem = document.createElement("div");
+            // bookshelf.appendChild(bookitem);
+            // bookitem.classList.add("bookitem");
             
 //             let bookauthor = bookitem.appendChild(document.createElement("p"));
 //             let booktitle = bookitem.appendChild(document.createElement("p"));
