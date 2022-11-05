@@ -65,6 +65,37 @@ function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) 
     bookshelfdiv.appendChild(bookitem);
     bookitem.classList.add("bookitem");
 
+    let bookauthor = bookitem.appendChild(document.createElement("p"));
+    let booktitle = bookitem.appendChild(document.createElement("p"));
+    let bookpages = bookitem.appendChild(document.createElement("p"));
+    let bookreadstatus = bookitem.appendChild(document.createElement("p"));
+    bookreadstatus.className="bookreadstatus";
+    let deletebookbutton = bookitem.appendChild(document.createElement("button"));
+    deletebookbutton.setAttribute("type", "button");
+    deletebookbutton.className = "deletebutton";
+    deletebookbutton.innerText = "delete me!";
+    let changestatusbutton = bookitem.appendChild(document.createElement("button"));
+    changestatusbutton.setAttribute("type", "button");
+    changestatusbutton.className = "changestatus";
+    changestatusbutton.innerText = "change read status";
+
+    bookauthor.innerText  = myLibrary[myLibrary.length - 1].author;
+    booktitle.innerText = myLibrary[myLibrary.length - 1].title;
+    bookpages.innerText = myLibrary[myLibrary.length - 1].pages;
+
+    if (myLibrary[myLibrary.length - 1].readstatus == true) {
+    bookreadstatus.innerText = "read"
+    } else {
+        bookreadstatus.innerText = "not read";
+    }
+
+    let dataNumber = "data" + "-" + "position" ;
+    
+    deletebookbutton.setAttribute(dataNumber, `${myLibrary.length - 1}`);
+
+    deletebookbutton.addEventListener("click", function () {
+
+    })
 }
 
 
