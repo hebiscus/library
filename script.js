@@ -114,17 +114,16 @@ function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) 
 }
 
 function ChangeReadStatus(deletebutton) {
-
     let bookitemspot = deletebutton.dataset.position;
-
     let boookIndex = myLibrary[bookitemspot];
+    let readstatusplace = deletebutton.previousSibling;
     
     if (boookIndex.readstatus == true) {
         boookIndex.readstatus = false;
-        // bookreadstatus.innerText = "not read";
+        readstatusplace.innerText = "not read";
     } else {
         boookIndex.readstatus = true;
-        // bookreadstatus.innerText = "read";
+        readstatusplace.innerText = "read";
     }
 
 }
