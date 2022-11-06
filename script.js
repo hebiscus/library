@@ -100,8 +100,15 @@ function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) 
     deletebookbutton.setAttribute(dataNumber, `${myLibrary.length - 1}`);
 
     deletebookbutton.addEventListener("click", function () {
-
+    const bookshelfdiv = document.querySelector(".bookshelf");
+    let bookitemspot = Number(this.dataset.position);
+    
+    myLibrary.splice(bookitemspot, 1);
+    bookshelfdiv.removeChild(bookshelfdiv.children[bookitemspot]);
     })
+
+    changestatusbutton.addEventListener("click", function () {
+        
 }
 
 
