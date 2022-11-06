@@ -42,8 +42,10 @@ function BringForm(e) {
     let submitinput = form.appendChild(document.createElement('input'));
         submitinput.setAttribute("type", "submit");
         submitinput.addEventListener("click", function (e) {
+            const bookshelfdiv = document.querySelector(".bookshelf")
             e.preventDefault();
             addBook.disabled = false;
+            bookshelfdiv.style.zIndex = "2";
         
             if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
                 return;
