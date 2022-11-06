@@ -9,11 +9,13 @@ function Book(author, title, pages, readstatus) {
 }
 
 addBook.addEventListener("click", function () {
+    const bookshelfdiv = document.querySelector(".bookshelf");
     addBook.disabled = true;
+    bookshelfdiv.style.zIndex = "1";
     BringForm();
 })
 
-function BringForm() {
+function BringForm(e) {
     const formplace = document.querySelector(".add-form");
     const addformdiv = document.createElement("div"); 
     addformdiv.className = "formdiv";
@@ -39,14 +41,16 @@ function BringForm() {
         readstatusinput.setAttribute("required", "");
     let submitinput = form.appendChild(document.createElement('input'));
         submitinput.setAttribute("type", "submit");
-        submitinput.addEventListener("click", function () {
+        submitinput.addEventListener("click", function (e) {
+            e.preventDefault();
             addBook.disabled = false;
         
             if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
                 return;
             }
             
-            addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput)
+            formplace.removeChild(addformdiv);
+            addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput);
         })
 }
 
