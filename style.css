@@ -146,4 +146,46 @@ body {
   display: grid;
   grid-template-columns: 40% 60%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    "author authorform"
+    "title titleform"
+    "pages pagesform"
+    "read readform"
+    ". submit";
+}
+
+.formdiv > form > p:first-child{
+  grid-area: author;
+}
+
+.formdiv > form > p:nth-child(2n) {
+  grid-area: title;
+}
+
+.formdiv > form  > p:nth-child(3n) {
+  grid-area: pages;
+}
+
+.formdiv > form  > p:nth-child(4n) {
+  grid-area: read;
+}
+
+.formdiv > form  > input:first-child {
+  grid-area: authorform;
+}
+
+.formdiv > form > input:nth-child(2n)  {
+  grid-area: titleform;
+}
+
+/* .formdiv > form > input:nth-child(3n){
+  grid-area: pagesform;
+} */
+
+.formdiv > form > input:nth-child(4n) {
+  grid-area: readform;
+}
+
+.formdiv > form > input:last-child {
+  grid-area: submit;
 }
