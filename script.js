@@ -73,6 +73,7 @@ function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) 
 
     let bookauthor = bookitem.appendChild(document.createElement("p"));
     let booktitle = bookitem.appendChild(document.createElement("p"));
+    booktitle.className="booktitle";
     let bookpages = bookitem.appendChild(document.createElement("p"));
     let bookreadstatus = bookitem.appendChild(document.createElement("p"));
     bookreadstatus.className="bookreadstatus";
@@ -95,16 +96,19 @@ function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) 
         bookreadstatus.innerText = "not read";
     }
 
-    let dataNumber = "data" + "-" + "position" ;
-    
-    deletebookbutton.setAttribute(dataNumber, `${myLibrary.length - 1}`);
+    let dataNumber = "data" + "-" + "position";
+
+    let bookIndex = myLibrary.findIndex(x => x.title == booktitle.innerText);
+    deletebookbutton.setAttribute(dataNumber, bookIndex);
 
     deletebookbutton.addEventListener("click", function () {
+    let booktitle = deletebookbutton.previousElementSibling.previousElementSibling.previousElementSibling;
+    let properbookspot = myLibrary.findIndex(x => x.title == booktitle.innerText);
     const bookshelfdiv = document.querySelector(".bookshelf");
-    let bookitemspot = Number(this.dataset.position);
+    // let bookitemspot = Number(this.dataset.position);
     
-    myLibrary.splice(bookitemspot, 1);
-    bookshelfdiv.removeChild(bookshelfdiv.children[bookitemspot]);
+    myLibrary.splice(properbookspot, 1);
+    bookshelfdiv.removeChild(bookshelfdiv.children[properbookspot]);
     })
 
     changestatusbutton.addEventListener("click", function () {
