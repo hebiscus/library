@@ -1,19 +1,39 @@
 let myLibrary = [];
 const addBook = document.querySelector(".add-button");
 
-addBook.addEventListener("click", function () {
-    addBook.disabled = true;
-    let bookshelfdiv = document.querySelector(".bookshelf");
-    bookshelfdiv.style.zIndex = "1";
+function Book(author, title, pages, readstatus) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.readstatus = readstatus;
+}
 
-    const addform = document.querySelector(".add-form");
+addBook.addEventListener("click", function () {
+    const bookshelfdiv = document.querySelector(".bookshelf");
+    addBook.disabled = true;
+    bookshelfdiv.style.zIndex = "1";
+    BringForm();
+})
+
+function BringForm() {
+    const formplace = document.querySelector(".add-form");
     const addformdiv = document.createElement("div"); 
     addformdiv.className = "formdiv";
-    addform.appendChild(addformdiv);
+
+    formplace.appendChild(addformdiv);
 
     const form = document.createElement("form"); 
     addformdiv.appendChild(form);
-    
+
+    const authortext = form.appendChild(document.createElement("p"));
+        authortext.innerText = "Author:"
+    const titletext = form.appendChild(document.createElement("p"));
+        titletext.innerText = "Title:"
+    const pagestext = form.appendChild(document.createElement("p"));
+        pagestext.innerText = "Number of pages read:"
+    const readtext = form.appendChild(document.createElement("p"));
+        readtext.innerText = "Have you read it?"
+
     let authorinput = form.appendChild(document.createElement("input"));
         authorinput.setAttribute("type", "text");
         authorinput.setAttribute("required", "");
@@ -30,108 +50,99 @@ addBook.addEventListener("click", function () {
         readstatusinput.setAttribute("required", "");
     let submitinput = form.appendChild(document.createElement('input'));
         submitinput.setAttribute("type", "submit");
-
-
-    submitinput.addEventListener("click", function () {
-        addBook.disabled = false;
-        bookshelfdiv.style.zIndex = "2";
-
-        if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
-            return;
-        }
-
-        addbuttonclicked = "no";
-
-        let authorvalue =  authorinput.value;
-        let titlevalue =  titleinput.value;
-        let pagesvalue =  pagesinput.value;
-        let readstatusvalue =  readstatusinput.checked;
-    
-        const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
-
-        myLibrary.push(newBook);
-
-        function addtoshelf() {
-            addform.removeChild(addformdiv);
-
-            const bookshelf = document.querySelector(".bookshelf");
-            const bookitem = document.createElement("div");
-            bookshelf.appendChild(bookitem);
-            bookitem.classList.add("bookitem");
-            
-            let bookauthor = bookitem.appendChild(document.createElement("p"));
-            let booktitle = bookitem.appendChild(document.createElement("p"));
-            let bookpages = bookitem.appendChild(document.createElement("p"));
-            let bookreadstatus = bookitem.appendChild(document.createElement("p"));
-
-            let deletebookbutton = bookitem.appendChild(document.createElement("button"));
-            deletebookbutton.className = "deletebutton";
-            deletebookbutton.setAttribute("type", "button");
-            deletebookbutton.innerText = "fucking help me";
-            
-
-            bookauthor.innerText  = myLibrary[myLibrary.length - 1].author;
-            booktitle.innerText = myLibrary[myLibrary.length - 1].title;
-            bookpages.innerText = myLibrary[myLibrary.length - 1].pages;
-
-            if (myLibrary[myLibrary.length - 1].readstatus == true) {
-                bookreadstatus.innerText = "read"
-            } else {
-                bookreadstatus.innerText = "not read";
+        submitinput.addEventListener("click", function (e) {
+            const bookshelfdiv = document.querySelector(".bookshelf")
+            if (authorinput.value == "" || titleinput.value == "" || pagesinput.value == "") {
+                return;
             }
-
-            let dataNumber = "data" + "-" + "position" ;
-            deletebookbutton.setAttribute(dataNumber, `${myLibrary.length - 1}`);
-        }
-
-        addtoshelf();
-
-        const bookshelf = document.querySelector(".bookshelf");
-        let deletebookbuttons = document.querySelectorAll(".deletebutton");
-        deletebookbuttons.forEach(function (i) {
-            i.addEventListener("click", function () {
-                let bookitemspot = Number(this.dataset.position);
-                myLibrary.splice(bookitemspot, 1);
-
-                bookshelf.removeChild(bookshelf.children[bookitemspot]);
-            })
+            e.preventDefault();
+            addBook.disabled = false;
+            bookshelfdiv.style.zIndex = "2";
+            
+            formplace.removeChild(addformdiv);
+            addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput);
         })
-
-        // deletebookbutton.addEventListener("click", function () {
-        //     // bookshelf.removeChild(this.bookitem.dataset)
-        
-        //     myLibrary.splice(myLibrary[`${bookitem.dataset}`], 1);
-        // })
-
-        });
-        
-    
-});
-
-
-// function deletebookshelf() {
-//         const bookitem = document.createElement("div");
-//         let deletebookbutton = document.querySelector(".deletebutton");
-
-//         deletebookbutton.addEventListener("click", function () {
-//             // bookshelf.removeChild(this.bookitem.dataset)
-    
-//             myLibrary.splice(myLibrary[`${bookitem.dataset}`], 1);
-//         })
-//     }
-
-// let deletebookbutton = document.querySelector(".deletebutton");
-// deletebookbutton.addEventListener("click", function () {
-//     // bookshelf.removeChild(this.bookitem.dataset)
-
-//     myLibrary.splice(myLibrary[`${bookitem.dataset}`], 1);
-// })
-
-
-function Book(author, title, pages, readstatus) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.readstatus = readstatus;
 }
+
+function addBookToLibrary(authorinput, titleinput, pagesinput, readstatusinput) {
+    const bookshelfdiv = document.querySelector(".bookshelf");
+    
+    authorvalue =  authorinput.value;
+    titlevalue =  titleinput.value;
+    pagesvalue =  pagesinput.value;
+    readstatusvalue =  readstatusinput.checked;
+
+    const newBook = new Book(authorvalue, titlevalue, pagesvalue, readstatusvalue);
+    myLibrary.push(newBook);
+
+    const bookitem = document.createElement("div");
+    bookshelfdiv.appendChild(bookitem);
+    bookitem.classList.add("bookitem");
+
+    let bookauthor = bookitem.appendChild(document.createElement("p"));
+    let booktitle = bookitem.appendChild(document.createElement("p"));
+    booktitle.className="booktitle";
+    let bookpages = bookitem.appendChild(document.createElement("p"));
+    let bookreadstatus = bookitem.appendChild(document.createElement("p"));
+    bookreadstatus.className="bookreadstatus";
+    let deletebookbutton = bookitem.appendChild(document.createElement("button"));
+    deletebookbutton.setAttribute("type", "button");
+    deletebookbutton.className = "deletebutton";
+    deletebookbutton.innerText = "delete me!";
+    let changestatusbutton = bookitem.appendChild(document.createElement("button"));
+    changestatusbutton.setAttribute("type", "button");
+    changestatusbutton.className = "changestatus";
+    changestatusbutton.innerText = "change read status";
+
+    bookauthor.innerText  = myLibrary[myLibrary.length - 1].author;
+    booktitle.innerText = myLibrary[myLibrary.length - 1].title;
+    bookpages.innerText = myLibrary[myLibrary.length - 1].pages;
+
+    if (myLibrary[myLibrary.length - 1].readstatus == true) {
+    bookreadstatus.innerText = "read";
+    } else {
+        bookreadstatus.innerText = "not read";
+    }
+
+    let dataNumber = "data" + "-" + "position";
+
+    let bookIndex = myLibrary.findIndex(x => x.title == booktitle.innerText);
+    deletebookbutton.setAttribute(dataNumber, bookIndex);
+
+    deletebookbutton.addEventListener("click", function () {
+    let booktitle = deletebookbutton.previousElementSibling.previousElementSibling.previousElementSibling;
+    let properbookspot = myLibrary.findIndex(x => x.title == booktitle.innerText);
+    const bookshelfdiv = document.querySelector(".bookshelf");
+    
+    myLibrary.splice(properbookspot, 1);
+    bookshelfdiv.removeChild(bookshelfdiv.children[properbookspot]);
+    })
+
+    changestatusbutton.addEventListener("click", function () {
+        let deletebutton = changestatusbutton.previousSibling
+        ChangeReadStatus(deletebutton);
+    })
+}
+
+function ChangeReadStatus(deletebutton) {
+    let readstatustext= deletebutton.previousElementSibling.innerText;
+
+    if (readstatustext == "read") {
+        deletebutton.previousElementSibling.innerText = "not read";
+    } else {
+        deletebutton.previousElementSibling.innerText = "read";
+    }
+    // let properbookspot = myLibrary.findIndex(x => x.readstatus == bookitemspot.innerText);
+    // let readstatusplace = deletebutton.previousSibling;
+    
+    // if (properbookspot.readstatus == true) {
+    //     properbookspot.readstatus = false;
+    //     readstatusplace.innerText = "not read";
+    // } else {
+    //     properbookspot.readstatus = true;
+    //     readstatusplace.innerText = "read";
+    // }
+
+}
+
 

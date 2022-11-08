@@ -20,11 +20,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0px 13px 10px -15px #111; 
   border-bottom: 5px solid #000000;
-  gap: 15px;
+  gap: 1rem;
 }
 
 
@@ -51,15 +50,11 @@ body {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  display: inherit;
   font-size: 1.9rem;
   font-weight: 700;
-  line-height: 24px;
+  text-align: center;
   margin: 0;
-  min-height: 56px;
-  min-width: 120px;
-  width: 10%;
-  padding: 16px 20px;
+  height: 3rem;
   position: relative;
   text-align: center;
   user-select: none;
@@ -72,13 +67,6 @@ body {
 .add-button:hover {
   background-color: #242527;
   transform: translateY(-2px);
-}
-
-@media (min-width: 768px) {
-  .add-button {
-    padding: 16px 44px;
-    min-width: 150px;
-  }
 }
 
 .bottom-part {
@@ -104,7 +92,7 @@ body {
   grid-column: 1;
   grid-row: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 1.5rem;
   z-index: 0;
@@ -114,15 +102,70 @@ body {
 .bookitem {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   background-color: #fff;
   border: 10px inset #A4A4A4;
   border-radius: 9px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
 }
 
+.bookitem > p {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
 .deletebutton {
-  width: 30px;
-  height: 50px;
+  background-color: #814330;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(0,44,97,.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  height: 2.3rem;
+  width: 65%;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.deletebutton:hover {
+  background-color: #242527;
+  transform: translateY(-2px);
+}
+
+.bookitem > button:last-of-type {
+  background-color: #643324;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(0,44,97,.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  height: 4.5rem;
+  width: 65%;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.bookitem > button:last-of-type:hover {
+  background-color: #242527;
+  transform: translateY(-2px);
 }
 
 .formdiv {
@@ -142,8 +185,62 @@ body {
 
 .formdiv > form {
   height: 100%;
-  width: 100%;
+  margin: 1.5rem;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 50%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  grid-template-areas: 
+    "author authorform"
+    "title titleform"
+    "pages pagesform"
+    "read readform"
+    ". submit";
+}
+
+.formdiv > form > p:first-child{
+  grid-area: author;
+}
+
+.formdiv > form > p:nth-child(2n) {
+  grid-area: title;
+}
+
+.formdiv > form  > p:nth-child(3n) {
+  grid-area: pages;
+}
+
+.formdiv > form  > p:nth-child(4n) {
+  grid-area: read;
+}
+
+.formdiv > form  > input:first-child {
+  grid-area: authorform;
+}
+
+.formdiv > form > input:nth-child(2n)  {
+  grid-area: titleform;
+}
+
+.formdiv > form > input:nth-child(4n) {
+  grid-area: readform;
+}
+
+.formdiv > form > input:last-child {
+  grid-area: submit;
+}
+
+.formdiv > form > p {
+  margin: 0;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.formdiv > form > input {
+  height: 1.5rem;
+}
+
+.formdiv > form > input:last-of-type {
+  align-self: flex-start;
 }
