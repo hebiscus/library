@@ -1,11 +1,22 @@
 let myLibrary = [];
 const addBook = document.querySelector(".add-button");
 
-function Book(author, title, pages, readstatus) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.readstatus = readstatus;
+// function Book(author, title, pages, readstatus) {
+//     this.author = author;
+//     this.title = title;
+//     this.pages = pages;
+//     this.readstatus = readstatus;
+// }
+
+class Book {
+
+    constructor(author, title, pages, readstatus) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.readstatus = readstatus;
+    }
+
 }
 
 addBook.addEventListener("click", function () {
